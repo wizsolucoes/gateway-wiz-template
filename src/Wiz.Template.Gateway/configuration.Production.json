@@ -1,0 +1,176 @@
+{
+  "ReRoutes": [
+    //#region Service: SSO / Endpoint: OpenId
+    {
+      "DownstreamPathTemplate": "/connect/token",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/token",
+      "UpstreamHttpMethod": [
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/.well-known/openid-configuration",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/.well-known/openid-configuration",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/.well-known/openid-configuration/jwks",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/.well-known/openid-configuration/jwks",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/authorize",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/authorize",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/userinfo",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/userinfo",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/endsession",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/endsession",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/checksession",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/checksession",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/revocation",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/revocation",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/introspect",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/introspect",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/connect/deviceauthorization",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/connect/deviceauthorization",
+      "UpstreamHttpMethod": [
+        "Get",
+        "Post"
+      ]
+    },
+    //#endregion
+    //#region Service: Template / Endpoint: Endpoint
+    {
+      "DownstreamPathTemplate": "/api/v{version}/template/endpoint",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "URL_PRODUCTION",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v{version}/template/endpoint",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "API_NAME",
+        "AllowedScopes": []
+      }
+    }
+    //#endregion
+  ],
+  "GlobalConfiguration": {}
+}
