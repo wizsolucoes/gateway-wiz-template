@@ -24,12 +24,16 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "netcoreapp3.0",
-          "description": "Target netcoreapp3.0"
+          "choice": "netcoreapp2.1",
+          "description": "Target netcoreapp2.1"
+        },
+        {
+          "choice": "netcoreapp2.2",
+          "description": "Target netcoreapp2.2"
         }
       ],
-      "replaces": "netcoreapp3.0",
-      "defaultValue": "netcoreapp3.0"
+      "replaces": "netcoreapp2.2",
+      "defaultValue": "netcoreapp2.2"
     },
     "copyrightYear": {
       "type": "generated",
@@ -49,6 +53,26 @@
   "primaryOutputs": [
     {
       "path": "Wiz.Template.sln"
+    }
+  ],
+  "sources": [
+    {
+      "source": ".",
+      "target": ".",
+      "exclude": [
+        "**/[Bb]in/**", 
+        "**/[Oo]bj/**", 
+        ".template.config/**/*", 
+        "**/*.filelist", 
+        "**/*.user", 
+        "**/*.lock.json",
+        "README.md", 
+        "LICENSE",
+        ".git/**/*"
+      ],
+      "rename": {
+        "README-TEMPLATE.md": "README.md"
+      }
     }
   ],
   "defaultName": "Template",
