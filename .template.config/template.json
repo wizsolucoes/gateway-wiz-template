@@ -57,16 +57,6 @@
   ],
   "sources": [
     {
-      "modifiers": [
-        {
-          "exclude": [
-            "TEST.txt",
-            "configuration.Development.json/**/*",
-            "configuration.Staging.json/**/*",
-            "configuration.Production.json/**/*"
-          ]
-        }
-      ],
       "source": ".",
       "target": ".",
       "exclude": [
