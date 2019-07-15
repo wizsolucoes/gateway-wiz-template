@@ -57,16 +57,26 @@
   ],
   "sources": [
     {
+      "modifiers": [
+        {
+          "exclude": [
+            "TEST.txt",
+            "configuration.Development.json/**/*",
+            "configuration.Staging.json/**/*",
+            "configuration.Production.json/**/*"
+          ]
+        }
+      ],
       "source": ".",
       "target": ".",
       "exclude": [
-        "**/[Bb]in/**", 
-        "**/[Oo]bj/**", 
-        ".template.config/**/*", 
-        "**/*.filelist", 
-        "**/*.user", 
+        "**/[Bb]in/**",
+        "**/[Oo]bj/**",
+        ".template.config/**/*",
+        "**/*.filelist",
+        "**/*.user",
         "**/*.lock.json",
-        "README.md", 
+        "README.md",
         "LICENSE",
         ".git/**/*"
       ],
