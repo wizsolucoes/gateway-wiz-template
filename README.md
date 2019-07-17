@@ -62,6 +62,29 @@ Dentro do arquivo *appsettings.{ENVIRONMENT}.json*, há o conteúdo para modific
 
 Caso não há chave de configuração no Azure, não é necessário inserir para executar o projeto local.
 
+7. Renomear os arquivos *configurations.(Development|Staging|Production).json* nos campos **DownstreamPathTemplate** e **UpstreamPathTemplate** conforme abaixo. Devido a criação do projeto esses nomes nos arquivos são alterados para o nome do projeto criado.
+
+```json
+    {
+      "DownstreamPathTemplate": "/api/v{version}/example/endpoint",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "5001",
+          "Port": 5002
+        }
+      ],
+      "UpstreamPathTemplate": "/api/v{version}/example/endpoint",
+      "UpstreamHttpMethod": [
+        "Get"
+      ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "API_NAME",
+        "AllowedScopes": []
+      }
+    }
+```
+
 ## Execução do projeto
 
 ### **Visual Studio**
