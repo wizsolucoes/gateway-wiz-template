@@ -1,5 +1,7 @@
 # Wiz - Gateway
 
+![](https://github.com/wizsolucoes/gateway-wiz-template/workflows/.NET%20Core/badge.svg)
+
 - [Desenvolvimento, por onde começar](#desenvolvimento-por-onde-começar)
 - [Execução do projeto](#execução-do-projeto)
 - [Estrutura](#estrutura)
