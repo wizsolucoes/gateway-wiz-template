@@ -1,9 +1,8 @@
 {
   "ReRoutes": [
-    //#region Service: SSO / Endpoint: OpenId
     {
       "DownstreamPathTemplate": "/connect/token",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
@@ -149,28 +148,7 @@
         "Get",
         "Post"
       ]
-    },
-    //#endregion
-    //#region Service: Example / Endpoint: Endpoint
-    {
-      "DownstreamPathTemplate": "/api/v{version}/example/endpoint",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "5001",
-          "Port": 5002
-        }
-      ],
-      "UpstreamPathTemplate": "/api/v{version}/example/endpoint",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "API_NAME",
-        "AllowedScopes": []
-      }
     }
-    //#endregion
   ],
   "GlobalConfiguration": {}
 }

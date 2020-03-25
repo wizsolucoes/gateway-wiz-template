@@ -9,7 +9,7 @@
   "name": "Wiz Template - Gateway",
   "generatorVersions": "[1.0.0.0-*)",
   "identity": "Wiz.Template.Gateway",
-  "groupIdentity": "Wiz.Template.Gateway.v1",
+  "groupIdentity": "Wiz.Template.Gateway.v3",
   "shortName": "wizgateway",
   "tags": {
     "language": "C#",
@@ -24,16 +24,16 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "netcoreapp2.1",
-          "description": "Target netcoreapp2.1"
+          "choice": "netcoreapp3.1",
+          "description": "Target netcoreapp3.1"
         },
         {
-          "choice": "netcoreapp2.2",
-          "description": "Target netcoreapp2.2"
+          "choice": "netcoreapp3.1",
+          "description": "Target netcoreapp3.1"
         }
       ],
-      "replaces": "netcoreapp2.2",
-      "defaultValue": "netcoreapp2.2"
+      "replaces": "netcoreapp3.1",
+      "defaultValue": "netcoreapp3.1"
     },
     "copyrightYear": {
       "type": "generated",
