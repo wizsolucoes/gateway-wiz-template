@@ -72,8 +72,6 @@ ENV IdentityServer:ApiName=API_NAME
 ENV IdentityServer:ApiSecret=API_SECRET
 ```
 
-Para executar o projeto via **docker** é necessário inserir a URL do **storage** do Azure.
-
 ## Execução do projeto
 
 ### **Visual Studio**
