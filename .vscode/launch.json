@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Wiz.Template.Gateway/bin/Debug/netcoreapp2.2/Wiz.Template.Gateway.dll",
+            "program": "${workspaceFolder}/src/Wiz.Template.Gateway/bin/Debug/netcoreapp3.1/Wiz.Template.Gateway.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Wiz.Template.Gateway",
             "stopAtEntry": false,
@@ -30,9 +30,6 @@
             },
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
-            },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
             }
         },
         {

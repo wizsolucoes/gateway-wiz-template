@@ -20,35 +20,58 @@ pool:
 variables:
   BuildConfiguration: 'Release'
   RestoreBuildProjects: '**/*.csproj'
-  RestoreBuildProjectsTest: '**/*[Tt]ests/*.csproj'
+  projectKey: '$(Build.Repository.Name)'
 
 resources:
 - repo: self
 
-steps:
-- task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: '$(RestoreBuildProjects)'
+stages:
+- stage: build
+  jobs:
+    - job:
+      steps:
+      - task: SonarCloudPrepare@1
+        inputs:
+          SonarCloud: 'sonarcloudwiz'
+          organization: 'wizdevops'
+          scannerMode: 'MSBuild'
+          projectKey: '$(projectKey)'
+          projectName: '$(projectKey)'
+          extraProperties: |
+            sonar.exclusions=**/obj/**,**/*.dll
+            sonar.cs.opencover.reportsPaths=**/coverage.*.xml
+            sonar.coverage.exclusions=**Tests*.cs
+            sonar.cs.vstest.reportsPaths=$(Agent.TempDirectory)/*.trx
 
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: '$(RestoreBuildProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+      - task: DotNetCoreCLI@2
+        displayName: Restore
+        inputs:
+          command: restore
+          projects: '$(RestoreBuildProjects)'
 
-- task: DotNetCoreCLI@2
-  displayName: Publish
-  inputs:
-    command: publish
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    projects: '$(RestoreBuildProjects)'
-    publishWebProjects: false
-    modifyOutputPath: true
-    zipAfterPublish: true
+      - task: DotNetCoreCLI@2
+        displayName: Build
+        inputs:
+          projects: '$(RestoreBuildProjects)'
+          arguments: '--configuration $(BuildConfiguration)'
 
-- task: PublishBuildArtifacts@1
-  displayName: 'Publish Artifact'
-  inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
+      - task: SonarCloudAnalyze@1
+
+      - task: SonarCloudPublish@1
+        inputs:
+          pollingTimeoutSec: '300'
+
+      - task: DotNetCoreCLI@2
+        displayName: Publish
+        inputs:
+          command: publish
+          arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+          projects: '$(RestoreBuildProjects)'
+          publishWebProjects: false
+          modifyOutputPath: true
+          zipAfterPublish: true
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact'
+        inputs:
+          pathtoPublish: '$(Build.ArtifactStagingDirectory)'
