@@ -27,15 +27,7 @@ Passos para execução do projeto:
 
 5. Incluir configurações de sistema *SSO (Single Sign-On)* no caminho abaixo:
 
-### **Visual Studio**
-
-```
-├── Wiz.[NomeProjeto] (solução)
-  ├── Wiz.[NomeProjeto].Gateway (projeto)
-    ├── appsettings.{ENVIRONMENT}.json
-```
-
-### **Visual Studio Code**
+### **Local**
 
 ```
 ├── src (pasta física)
@@ -64,28 +56,23 @@ Dentro do arquivo *appsettings.{ENVIRONMENT}.json*, há o conteúdo para modific
 
 Caso não há chave de configuração no Azure, não é necessário inserir para executar o projeto local.
 
-7. Renomear os arquivos *configurations.(Development|Staging|Production).json* nos campos **DownstreamPathTemplate** e **UpstreamPathTemplate** conforme abaixo. Devido a criação do projeto esses nomes nos arquivos são alterados para o nome do projeto criado.
+### **Docker**
 
-```json
-    {
-      "DownstreamPathTemplate": "/api/v{version}/example/endpoint",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "5001",
-          "Port": 5002
-        }
-      ],
-      "UpstreamPathTemplate": "/api/v{version}/example/endpoint",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "API_NAME",
-        "AllowedScopes": []
-      }
-    }
 ```
+├── Dockerfile
+```
+
+Dentro do arquivo *Dockerfile*, há o conteúdo para modificação das variáveis:
+
+```docker
+ENV ApplicationInsights:InstrumentationKey=KEY_APPLICATION_INSIGHTS
+ENV IdentityServer:ProviderKey=PROVIDER_KEY
+ENV IdentityServer:Authority=AUTHORITY
+ENV IdentityServer:ApiName=API_NAME
+ENV IdentityServer:ApiSecret=API_SECRET
+```
+
+Para executar o projeto via **docker** é necessário inserir a URL do **storage** do Azure.
 
 ## Execução do projeto
 
@@ -96,7 +83,7 @@ Caso não há chave de configuração no Azure, não é necessário inserir para
 Executar o projeto via **Kestrel** facilita a troca de ambientes *(environments)* e a verificação de logs em execução da aplicação em projetos .NET Core. Os ambientes podem ser configurados dentro das propriedades do projeto, conforme caminho abaixo:
 
 ```
-├── Wiz.[NomeProjeto] (solução)
+├── src (pasta física)
   ├── Wiz.[NomeProjeto].Gateway (projeto)
     ├── Properties (pasta física)
       ├── launchSettings.json
@@ -148,6 +135,20 @@ Terminal -> Run Task
    + *restore* - Restaurar pacotes da solução
    + *build* - Compilar pacotes da solução
 
+### **Docker**
+
+1. Executar comando na **raiz** do projeto:
+
+> *docker-compose up -d*
+
+2. logs de execução:
+
+> *docker-compose logs*
+
+3. Parar e remover container:
+
+> *docker-compose down*
+
 ## Estrutura
 
 Padrão das camadas do projeto:
@@ -164,13 +165,25 @@ Formatação do projeto dentro do repositório:
 
 ## Dependências
 
-* [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/?view=aspnetcore-2.2)
+* [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core)
 * [Identity Server 4](https://identityserver4.readthedocs.io/en/latest/)
 * [Ocelot](https://ocelot.readthedocs.io/en/latest/introduction/gettingstarted.html)
 
 ## Build e testes
 
 Não há obrigatoriedade de realização de testes unitários ou de integração. Todos os testes são executados pelos **microsserviços** disponibilizados.
+
+### **Sonar**
+
+1. Dentro do arquivo dos projetos **(.csproj)** no campo **PropertyGroup**, é necessário adicionar um GUID no formato abaixo:
+
+```
+<PropertyGroup>
+  <ProjectGuid>{b5c970c2-a7cc-4052-b07b-b599b83fc621}</ProjectGuid>
+</PropertyGroup>
+```
+
+2. O GUID pode ser coletado no arquivo da solution ou criado pelo site: https://www.guidgenerator.com/.
 
 ## CI/CD
 
@@ -180,4 +193,3 @@ Não há obrigatoriedade de realização de testes unitários ou de integração
 ## README
 
 * Incluir documentação padrão no arquivo [README.md](README.md).
-* Após inclusão da documentação padrão, **excluir** este arquivo e TODOS os **endpoints** indentificadas como EXAMPLE.

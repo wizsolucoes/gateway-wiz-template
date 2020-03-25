@@ -1,6 +1,5 @@
 {
   "ReRoutes": [
-    //#region Service: SSO / Endpoint: OpenId
     {
       "DownstreamPathTemplate": "/connect/token",
       "DownstreamScheme": "http",
@@ -149,28 +148,7 @@
         "Get",
         "Post"
       ]
-    },
-    //#endregion
-    //#region Service: Template / Endpoint: Endpoint
-    {
-      "DownstreamPathTemplate": "/api/v{version}/template/endpoint",
-      "DownstreamScheme": "https",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "URL_PRODUCTION",
-          "Port": 443
-        }
-      ],
-      "UpstreamPathTemplate": "/api/v{version}/template/endpoint",
-      "UpstreamHttpMethod": [
-        "Get"
-      ],
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "API_NAME",
-        "AllowedScopes": []
-      }
     }
-    //#endregion
   ],
   "GlobalConfiguration": {}
 }
