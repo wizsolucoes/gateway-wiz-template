@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.13.1" />
     <PackageReference Include="Ocelot" Version="14.1.0" />
   </ItemGroup>
+
+  <Target Name="InstallNpm" BeforeTargets="_GenerateRestoreProjectSpec">
+    <Exec Command="npm install" ConsoleToMsBuild="true" />
+  </Target>
 </Project>
